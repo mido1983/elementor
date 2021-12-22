@@ -9,7 +9,7 @@
      **/
     
     $data = new DisableAdminBar;
-    $usersDisableAdminBarList = ['wptest@elementor.com', 'test@test.com', 'test1@gmail.com'];
+    $usersDisableAdminBarList = ['wptest@elementor.com', 'michael.doroshenko1@gmail.com', 'test1@gmail.com'];
     if ($data->mido_check_user_email($usersDisableAdminBarList))
         add_filter('show_admin_bar', '__return_false');
     

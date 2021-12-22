@@ -13,7 +13,6 @@
 
 ?>
 <footer id="site-footer" role="contentinfo" class="header-footer-group footer">
-
     <div class="container bottom_border">
         <div class="row">
             <div class=" col-sm-4 col-md col-sm-4  col-12 col">
