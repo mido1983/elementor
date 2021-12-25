@@ -1,23 +1,39 @@
 /*
  Theme Name:   Twenty Twenty Child
- Author:       Michael Doroshenko
+ Author:       Michael Doroshenko 
  Template:     twentytwenty
 */
 /*GLOBAL*/
 .mido-mb-1 {
     margin-bottom: 1rem !important;
 }
+
 .mido-mb-2 {
     margin-bottom: 2rem !important;
 }
+
 .mido-mb-3 {
     margin-bottom: 3rem !important;
 }
+
 .mido-mb-4 {
     margin-bottom: 4rem !important;
 }
 
+.jumbotron {
+    padding: 2rem 1rem !important;
+}
 
+/*ACF*/
+.acf-row {
+    display: flex;
+    align-items: center;
+}
+
+.acf-input-title {
+    margin-right: 3rem;
+    font-weight: 800;
+}
 
 
 /*Header*/
@@ -533,7 +549,19 @@ footer p {
 .mido-single-1 {
     width: 100% !important;
 }
+
 .title-product {
     text-align: center;
     margin-bottom: 2rem;
+}
+
+
+.gallery {
+    padding: 40px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 0;
+    position: relative;
 }

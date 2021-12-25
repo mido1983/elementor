@@ -4,7 +4,6 @@
     Template Post Type: page
     */
     get_template_part('parts/header');
-    
     $args = array('post_type' => 'product', 'posts_per_page' => 10);
     $the_query = new WP_Query($args);
     $userId = get_current_user_id();
@@ -19,7 +18,7 @@
                     <div class="card__head">
                         <div class="card__image" style="background-image: url(<?php echo $bgimage ?>)"></div>
                         <?php
-                            if (!empty($lable) &&  $lable != '0') {
+                            if (!empty($lable) && $lable != 0) {
                                 ?>
                                 <div class="on_sale">
                                     <span class="on_sale_text">On Sale!</span>
