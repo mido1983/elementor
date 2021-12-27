@@ -5,18 +5,16 @@
     include_once 'core/class-custom-post-type.php';
     include_once 'core/class-admin-custom-fields.php';
     include_once 'core/class-create-shortcode.php';
-    
     $data = new DisableAdminBar;
     if ($data->mido_check_user_email())
         add_filter('show_admin_bar', '__return_false');
-    
     function wpse_setup_theme()
     {
         add_theme_support('mido-post-thumbnails');
         add_image_size('small-thumb', 230, 230, true);
     }
-    add_action('after_setup_theme', 'wpse_setup_theme');
     
+    add_action('after_setup_theme', 'wpse_setup_theme');
     $product = new CustomPostType(
         array(
             'post_type_name' => 'product',
@@ -36,12 +34,8 @@
             'slug' => 'product',
             'plural' => 'Products',
             'menu_icon' => 'dashicons-randomize',
-            'public'       => true,
-            'show_in_rest' => true,
-            
         )
     );
-    
     $product->register_post_type(
         array(
             'title',
@@ -53,7 +47,6 @@
             'page-attributes',
         ),
     );
-    
     $product->register_taxonomy(
         array(
             'taxonomy_name' => 'products',
@@ -62,7 +55,6 @@
             'slug' => 'product',
         )
     );
-    
     $product->columns(
         array(
             'cb' => '<input type="checkbox" />',
@@ -73,23 +65,21 @@
             'date' => __('Date'),
         )
     );
-    
     $ACF = new ACF();
     $custom_shortcode = new Custom_shortcode();
-    
     /**
      * change mobile address bar color
      */
-    function color_mobile_address_bar() {
+    function color_mobile_address_bar()
+    {
         $color = "#008509";
         //this is for Chrome, Firefox OS, Opera and Vivaldi
-        echo '<meta name="theme-color" content="'.$color.'">';
+        echo '<meta name="theme-color" content="' . $color . '">';
         //Windows Phone **
-        echo '<meta name="msapplication-navbutton-color" content="'.$color.'">';
+        echo '<meta name="msapplication-navbutton-color" content="' . $color . '">';
         // iOS Safari
         echo '<meta name="apple-mobile-web-app-capable" content="yes">';
         echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">';
-        
-        
     }
-    add_action( 'wp_head', 'color_mobile_address_bar' );
+    
+    add_action('wp_head', 'color_mobile_address_bar');

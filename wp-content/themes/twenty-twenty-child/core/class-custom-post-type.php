@@ -50,8 +50,13 @@
             $this->add_action('restrict_manage_posts', array(&$this, 'add_taxonomy_filters'));
             $this->add_filter('post_updated_messages', array(&$this, 'updated_messages'));
             $this->add_filter('bulk_post_updated_messages', array(&$this, 'bulk_updated_messages'), 10, 2);
-        }
+            $this->add_filter('rest_route_for_post', array(&$this, 'product_rest_route_for_post'), 10, 2);
+            $this->add_filter('register_post_type_args', array(&$this, 'product_type_args'), 10, 2);
+            $this->add_filter('rest_route_for_term', array(&$this, 'product_rest_route_for_term'), 10, 2);
+            $this->add_filter('register_taxonomy_args', array(&$this, 'product_taxonomy_args'), 10, 2);
         
+        }
+    
         function get_slug($name = null)
         {
             if (!isset($name)) {
@@ -145,17 +150,45 @@
             $defaults = array(
                 'labels' => $labels,
                 'public' => true,
+                'show_in_rest' => true,
+                'rest_base' => 'products',
+                'rest_controller_class' => 'WP_REST_Products_Controller',
+                'query_var' => true,
                 'rewrite' => array(
                     'slug' => $slug,
                 ),
                 'supports' => $data,
             );
-            
             $options = array_replace_recursive($defaults, $this->options);
             $this->options = $options;
             if (!post_type_exists($this->post_type_name)) {
                 register_post_type($this->post_type_name, $options);
             }
+        }
+        
+        function product_rest_route_for_post($route, $post)
+        {
+            if ($post->post_type === 'product') {
+                $route = '/wp/v2/products/' . $post->ID;
+            }
+            return $route;
+        }
+    
+        /**
+         * Add REST API support to an already registered post type.
+         */
+    
+        function product_type_args( $args, $post_type ) {
+        
+            if ( 'product' === $post_type ) {
+                $args['show_in_rest'] = true;
+            
+                // Optionally customize the rest_base or rest_controller_class
+                $args['rest_base']             = 'products';
+                $args['rest_controller_class'] = 'WP_REST_Posts_Controller';
+            }
+        
+            return $args;
         }
         
         function register_taxonomy($taxonomy_names, $options = array())
@@ -204,6 +237,9 @@
             $defaults = array(
                 'labels' => $labels,
                 'hierarchical' => true,
+                'show_in_rest' => true,
+                'rest_base' => 'products',
+                'rest_controller_class' => 'WP_REST_Terms_Controller',
                 'rewrite' => array(
                     'slug' => $slug,
                 ),
@@ -211,6 +247,31 @@
             $options = array_replace_recursive($defaults, $options);
             $this->taxonomies[] = $taxonomy_name;
             $this->taxonomy_settings[$taxonomy_name] = $options;
+        }
+        
+        function product_rest_route_for_term($route, $term)
+        {
+            if ($term->taxonomy === 'product') {
+                $route = '/wp/v2/genre/' . $term->term_id;
+            }
+            return $route;
+        }
+    
+        /**
+         * Add REST API support to an already registered taxonomy.
+         */
+    
+        function product_taxonomy_args( $args, $taxonomy_name ) {
+        
+            if ( 'products' === $taxonomy_name ) {
+                $args['show_in_rest'] = true;
+            
+                // Optionally customize the rest_base or rest_controller_class
+                $args['rest_base']             = 'products';
+                $args['rest_controller_class'] = 'WP_REST_Terms_Controller';
+            }
+        
+            return $args;
         }
         
         function register_taxonomies()

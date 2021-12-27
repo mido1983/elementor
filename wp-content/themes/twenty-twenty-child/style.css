@@ -231,7 +231,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    /*width: 500px;*/
+    width: 400px;
     background: white;
     color: currentColor;
     text-decoration: none;
@@ -243,6 +243,23 @@ body {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 600px) {
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        /*width: 400px;*/
+        background: white;
+        color: currentColor;
+        text-decoration: none;
+        overflow: hidden;
+        transition-property: color;
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+        transition-delay: 0.15s;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+}
 .card.hover {
     color: white;
     transition-delay: 0;
