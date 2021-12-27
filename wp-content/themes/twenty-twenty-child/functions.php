@@ -36,6 +36,8 @@
             'slug' => 'product',
             'plural' => 'Products',
             'menu_icon' => 'dashicons-randomize',
+            'public'       => true,
+            'show_in_rest' => true,
             
         )
     );
@@ -74,4 +76,20 @@
     
     $ACF = new ACF();
     $custom_shortcode = new Custom_shortcode();
-
+    
+    /**
+     * change mobile address bar color
+     */
+    function color_mobile_address_bar() {
+        $color = "#008509";
+        //this is for Chrome, Firefox OS, Opera and Vivaldi
+        echo '<meta name="theme-color" content="'.$color.'">';
+        //Windows Phone **
+        echo '<meta name="msapplication-navbutton-color" content="'.$color.'">';
+        // iOS Safari
+        echo '<meta name="apple-mobile-web-app-capable" content="yes">';
+        echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">';
+        
+        
+    }
+    add_action( 'wp_head', 'color_mobile_address_bar' );

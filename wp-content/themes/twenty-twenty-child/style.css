@@ -4,6 +4,11 @@
  Template:     twentytwenty
 */
 /*GLOBAL*/
+
+/*html, body {*/
+/*    max-width: 100%;*/
+/*    overflow-x: hidden;*/
+/*}*/
 .mido-mb-1 {
     margin-bottom: 1rem !important;
 }
@@ -226,7 +231,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    /*width: 500px;*/
     background: white;
     color: currentColor;
     text-decoration: none;
