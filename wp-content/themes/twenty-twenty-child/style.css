@@ -5,10 +5,10 @@
 */
 /*GLOBAL*/
 
-/*html, body {*/
-/*    max-width: 100%;*/
-/*    overflow-x: hidden;*/
-/*}*/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 .mido-mb-1 {
     margin-bottom: 1rem !important;
 }
@@ -245,19 +245,7 @@ body {
 
 @media (max-width: 600px) {
     .card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        /*width: 400px;*/
-        background: white;
-        color: currentColor;
-        text-decoration: none;
-        overflow: hidden;
-        transition-property: color;
-        margin-bottom: 0.5rem;
-        margin-top: 1rem;
-        transition-delay: 0.15s;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        width: auto;
     }
 }
 .card.hover {
